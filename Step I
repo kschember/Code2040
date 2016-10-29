@@ -1,5 +1,7 @@
 import requests
-url = 'http://challenge.code2040.org/api/register'
-payload = {'token': 'c55a4c430c30328ace58859b593207f2', 'github': 'https://githup.com/kschember/Code2040'}
+import json
 
-r = requests.post(url, data=json.dumps(payload))
+url = "http://challenge.code2040.org/api/register"
+payload = {'token': 'c55a4c430c30328ace58859b593207f2', 'github': "https://githup.com/kschember/Code2040"}
+
+r = requests.post(url, data = json.dumps(payload))
