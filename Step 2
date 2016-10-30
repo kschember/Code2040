@@ -1,0 +1,16 @@
+import requests
+import simplejson as json
+
+url = 'http://challenge.code2040.org/api/reverse'
+payload = {'token': 'c55a4c430c30328ace58859b593207f2'}
+
+r = requests.post(url, json = payload)
+
+s_rev = (r.text [::-1])
+
+
+
+url_return = 'http://challenge.code2040.org/api/reverse/validate'
+payload_return = {'token': 'c55a4c430c30328ace58859b593207f2', 'string': s_rev}
+
+r_1 = requests.post(url, json = payload_return)
