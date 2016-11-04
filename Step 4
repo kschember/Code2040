@@ -1,0 +1,28 @@
+import requests
+import simplejson as json
+
+url = 'http://challenge.code2040.org/api/prefix'
+payload = {'token': 'c55a4c430c30328ace58859b593207f2'}
+
+r = requests.post(url, json = payload)
+
+data = json.loads(r.text)
+prefix = data['prefix']
+array = data['array']
+
+
+#creates an empty array that I will add to later
+array_return = []
+
+#loop to go through each element of the array
+#adds each string without the prefix to the new array, in order
+for x in array :
+	if not x.startswith(prefix) :
+		array_return.append(x)
+
+
+
+url_return = 'http://challenge.code2040.org/api/prefix/validate'
+payload_return = {'token': 'c55a4c430c30328ace58859b593207f2', 'array': array_return}
+
+r = requests.post(url_return, json = payload_return)
