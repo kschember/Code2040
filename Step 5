@@ -1,0 +1,40 @@
+#I used different datetime and parsing libraries for this
+import requests
+import simplejson as json
+import datetime
+from datetime import timedelta
+import dateutil.parser as parser
+
+url = 'http://challenge.code2040.org/api/dating'
+payload = {'token': 'c55a4c430c30328ace58859b593207f2'}
+
+r = requests.post(url, json = payload)
+
+data = json.loads(r.text)
+datestamp = data['datestamp']
+interval = data['interval']
+
+#I relied heavily on print statements to test my work for this so I'm leaving them here to demonstrate that
+print datestamp
+print interval
+
+#I tried several different methods of adding, including using the .isoformat() function
+#In the end, this one was the easiest for me to code
+#I make both variables into type datestamp
+#timedelta, which I found online, adds the times correctly
+new_datestamp = parser.parse(datestamp) + datetime.timedelta(seconds = int(interval))
+
+#timedelta adds +00:00 at the end, but the program wants iso format without that
+#the .isoformat() function couldn't take away that extra interval,
+# so I just manually coded the format
+format_date = new_datestamp.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+print new_datestamp
+print format_date
+
+
+
+url_return = 'http://challenge.code2040.org/api/dating/validate'
+payload_return = {'token': 'c55a4c430c30328ace58859b593207f2', 'datestamp': format_date}
+
+r = requests.post(url_return, json = payload_return)
