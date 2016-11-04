@@ -6,6 +6,10 @@ payload = {'token': 'c55a4c430c30328ace58859b593207f2'}
 
 r = requests.post(url, json = payload)
 
+
+#r gathers the data from POST
+#I retrieved the string text from r and I found this function online that reverses
+#as I was working, I added a print statement to test
 s_rev = (r.text [::-1])
 
 
