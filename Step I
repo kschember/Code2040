@@ -1,7 +1,12 @@
+#I used Python for the entire assessment
+#first step is to import libraries to use applications
+#such as request, which is used for POST
 import requests
 import simplejson as json
 
 url = 'http://challenge.code2040.org/api/register'
-payload = {'token': 'c55a4c430c30328ace58859b593207f2', 'github': 'https://github.com/kschember/Code2040'}
+payload = {'token': 'c55a4c430c30328ace58859b593207f2', 'github': 'https://github.com/kschember/Code2040.git'}
 
+
+#sends a POST request with json
 r = requests.post(url, json = payload)
