@@ -1,0 +1,23 @@
+import requests
+import simplejson as json
+
+url = 'http://challenge.code2040.org/api/haystack'
+payload = {'token': 'c55a4c430c30328ace58859b593207f2'}
+
+r = requests.post(url, json = payload)
+
+
+#gathers text from POST data and parse into two strings
+data = json.loads(r.text)
+needle = data['needle']
+haystack = data['haystack']
+
+
+#uses array syntax to search for the string and get the index int
+pos = haystack.index(needle)
+
+
+url_return = 'http://challenge.code2040.org/api/haystack/validate'
+payload_return = {'token': 'c55a4c430c30328ace58859b593207f2', 'needle': pos}
+
+r = requests.post(url_return, json = payload_return)
